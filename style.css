@@ -3,7 +3,7 @@ body {
     font-family: 'Courier New', monospace;
     line-height: 1.6;
     color: #e0e0e0;
-    background: #0a0a0a;
+    background: #111827;
     margin: 0;
     padding: 20px;
 }
@@ -14,14 +14,30 @@ body {
 }
 
 /* Cabeçalho */
+/* Cabeçalho */
+header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1rem;
+}
+
 header h1 {
     color: #6c63ff;
-    margin-bottom: 10px;
+    margin: 0 0 4px 0; /* reduz o espaço abaixo do título */
+    font-size: 1.6rem;
 }
 
 header p {
     color: #777;
-    margin-top: 0;
+    margin: 0 ; /* remove o espaço extra acima e abaixo do subtítulo */
+    padding-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+p {
+    color: #9CA3AF;
+    font-size: 0.95em;
+    font-style: bold;
 }
 
 /* Filtros de Tags */
@@ -44,34 +60,42 @@ header p {
     color: #e0e0e0;
     border: none;
     padding: 5px 10px;
-    border-radius: 3px;
+    border-radius: 999px; /* mais arredondado, tipo "pill" */
     cursor: pointer;
     font-family: 'Courier New', monospace;
     font-size: 0.9em;
-    transition: background 0.2s;
+    transition: background 0.2s, opacity 0.2s;
 }
 
-.filter.active {
-    background: #6c63ff;
-}
-
+/* Hover (opcional, pode manter o seu atual) */
 .filter:hover {
-    background: #555;
+    background: #444;
+}
+
+/* Efeito de transparência no selecionado */
+.filter.active {
+    background: rgba(108, 99, 255, 0.15); /* roxo claro e translúcido */
+    color: #6c63ff;
+    border: 1px solid #6c63ff;
+    font-weight: bold;
+    opacity: 1; /* garante que o ativo não fique transparente */
 }
 
 /* Lista de Posts */
 .posts-list {
-    margin-top: 30px;
+    margin-top: 20px; /* um pouco menos que antes */
 }
 
 .post-item {
-    margin-bottom: 2em;
+    margin-bottom: 1.5em; /* menos espaço entre os posts */
     border-bottom: 1px solid #333;
-    padding-bottom: 1em;
+    padding-bottom: 0.8em;
 }
 
 .post-item h2 {
-    margin-bottom: 5px;
+    margin-bottom: 4px; /* título mais próximo da data */
+    font-size: 1.2rem;
+    color: #4ADE80;
 }
 
 .post-item h2 a {
@@ -85,16 +109,16 @@ header p {
 
 time {
     color: #777;
-    font-size: 0.9em;
+    font-size: 0.85em;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 6px; /* menos espaço até a descrição */
 }
 
 /* Tags dos Posts */
 .tags {
     display: flex;
     gap: 5px;
-    margin-top: 10px;
+    margin-top: 5px; /* diminuir distância entre texto e tags */
     flex-wrap: wrap;
 }
 
@@ -102,9 +126,9 @@ time {
     background: #1a1a1a;
     color: #6c63ff;
     border: none;
-    padding: 3px 8px;
+    padding: 2px 6px;
     border-radius: 3px;
-    font-size: 0.8em;
+    font-size: 0.75em;
     cursor: pointer;
     font-family: 'Courier New', monospace;
     transition: opacity 0.2s;
