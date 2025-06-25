@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>beatriz/log</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>beatriz/log</h1>
+            <p>Um blog minimalista sobre desenvolvimento e ideias.</p>
+        </header>
+
+        <!-- Filtros de Tags (Fixos + Dinâmicos) -->
+        <div class="tag-filters">
+            <!-- Filtros Fixos -->
+            <button class="filter active" data-tag="all">Todos</button>
+            <button class="filter" data-tag="linux">#linux</button>
+            <button class="filter" data-tag="zabbix">#zabbix</button>
+            <button class="filter" data-tag="grafana">#grafana</button>
+            
+            <!-- Filtros Dinâmicos (gerados via JavaScript) -->
+            <div class="dynamic-filters"></div>
+        </div>
+
+        <!-- Lista de Posts -->
+        <main class="posts-list">
+            <!-- Dentro de <main class="posts-list"> -->
+          <article class="post-item" data-tags="linux zabbix">
+            <h2><a href="posts/monitoramento-com-zabbix.html">Monitoramento com Zabbix</a></h2>
+            <time datetime="2024-03-10">10 de Março de 2024</time>
+            <p>Como configurar alertas no Zabbix para servidores Linux. <a href="posts/monitoramento-com-zabbix.html">Ler post...</a></p>
+            <div class="tags">
+              <button class="tag" data-tag="linux">#linux</button>
+              <button class="tag" data-tag="zabbix">#zabbix</button>
+            </div>
+          </article>
+        </main>
+
+        <footer>
+            <p>Feito com simplicidade por você © 2024</p>
+        </footer>
+    </div>
+
+    <!-- Scripts (Adicione no FINAL do body!) -->
+    <script src="filter.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
