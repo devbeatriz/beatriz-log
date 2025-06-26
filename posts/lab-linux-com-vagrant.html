@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab Linux com Vagrant | beatriz/log</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="../index.html">← beatriz/log</a></h1>
+        </header>
+
+        <article class="post-full">
+            <h2>Montando um Lab Linux com Vagrant</h2>
+            <time datetime="2025-06-25">25 de Junho de 2025</time>
+            <div class="post-content">
+                <p>Anotei aqui os passos para ter um ambiente Linux rápido com Vagrant.</p>
+
+                <h3>Instalação e Configuração Inicial</h3>
+                <p>Primeiro, preciso ter o VirtualBox e o Vagrant instalados. Depois, a caixa da distro:</p>
+                <pre><code>vagrant box add ubuntu/jammy64</code></pre>
+
+                <p>Para um projeto novo, crio uma pasta e inicializo:</p>
+                <pre><code>mkdir meu_lab_vagrant
+cd meu_lab_vagrant
+vagrant init ubuntu/jammy64</code></pre>
+
+                <p>Isso gera um `Vagrantfile`. Edito ele para configurar a VM:</p>
+                <pre><code>Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/jammy64"
+  config.vm.network "private_network", ip: "192.168.56.101" # IP fixo
+  config.vm.hostname = "meu-lab-ubuntu" # Nome da máquina
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "meu-lab-ubuntu-vm" # Nome na interface do VirtualBox
+    vb.memory = "2048" # 2GB de RAM
+    vb.cpus = "2" # 2 CPUs
+  end
+  # Adicionando um provisionamento básico (ex: instalar Nginx)
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update
+    sudo apt-get install -y nginx
+    echo "<h1>Hello from Vagrant!</h1>" | sudo tee /var/www/html/index.nginx-debian.html
+  SHELL
+end</code></pre>
+
+                <h3>Subindo e Acessando</h3>
+                <p>Para iniciar a VM:</p>
+                <pre><code>vagrant up</code></pre>
+
+                <p>E para acessar via SSH:</p>
+                <pre><code>vagrant ssh</code></pre>
+
+                <p>Depois de terminar, para desligar ou destruir:</p>
+                <pre><code>vagrant halt    # Desliga a VM
+vagrant destroy # Deleta a VM e todos os arquivos (cuidado!)</code></pre>
+
+                <p>É isso. Um lembrete rápido de como subir um ambiente Linux isolado para minhas experiências.</p>
+            </div>
+            <div class="tags">
+                <span class="tag">#linux</span>
+                <span class="tag">#vagrant</span>
+                <span class="tag">#devops</span>
+                <span class="tag">#lab</span>
+            </div>
+        </article>
+
+        <footer>
+            <span class="footer-prompt">$</span> <span class="footer-path">beatriz ~/blog/main</span> <a href="https://github.com/devbeatriz" target="_blank" rel="noopener noreferrer">(github.com/devbeatriz)</a><span class="blinking-cursor">_</span>
+        </footer>
+    </div>
+</body>
+</html>
